@@ -11,15 +11,18 @@ def json_serial(obj):
         return obj.isoformat()
     raise TypeError ("Type %s not serializable" % type(obj))
 
-connection = pymysql.connect(host='localhost',
-                             user='root',
-                             password='root',
-                             db='azure_person_db',
-                             charset='utf8mb4',
-                             cursorclass=pymysql.cursors.DictCursor)
+### Define database connection ###
+#
+#connection = pymysql.connect(host='localhost',
+#                             user='root',
+#                             password='root',
+#                             db='azure_person_db',
+#                             charset='utf8mb4',
+#                             cursorclass=pymysql.cursors.DictCursor)
 
-
+# Get face recognition data between start_time and end_time
 def get_data(start_time, end_time):
+
     ### Obtain data from SQL database ###
     #
     #with connection.cursor() as cursor:
@@ -43,12 +46,12 @@ def get_data(start_time, end_time):
     #        json.dump(obj, f, default=json_serial)
     #        f.write('\n')
 
-    ### Load demo data from local JSON file ###
-
+    # Initialize before query from JSON
     datas = []
     start_time = dateutil.parser.parse(start_time)
     end_time = dateutil.parser.parse(end_time)
 
+    # Load demo data from local JSON file ###
     with open('data/azure_face_recognition_result_data.json') as f:
         for line in f:
             this_data = json.loads(line)
@@ -57,7 +60,7 @@ def get_data(start_time, end_time):
 
     return datas
 
-
+# Get all possible faces to match with using the similarity convertion table
 def get_face_count(group_similarity_src):
     with open(group_similarity_src, 'r', encoding='utf-8') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',')

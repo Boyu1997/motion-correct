@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.0.1",
     author="Boyu Jiang",
     author_email="jbyjiangboyu@126.com",
-    description="Use motion information to correct face recognition result.",
+    description="Extract motion information to improve face recognition accuracy.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Boyu1997/motion-correct",
