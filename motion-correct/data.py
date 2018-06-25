@@ -1,5 +1,14 @@
 import pymysql.cursors
 import csv
+import json
+
+from datetime import date, datetime
+
+# JSON serializer for objects not serializable by default json code
+def json_serial(obj):
+    if isinstance(obj, (datetime, date)):
+        return obj.isoformat()
+    raise TypeError ("Type %s not serializable" % type(obj))
 
 connection = pymysql.connect(host='localhost',
                              user='root',
@@ -10,15 +19,40 @@ connection = pymysql.connect(host='localhost',
 
 
 def get_data(start_time, end_time):
-    with connection.cursor() as cursor:
-        sql = "SELECT `id`, `person_first_id`, `person_first_similarity`, `person_second_id`, `person_second_similarity`, `face_rectangle`, `right_person_id`, `monitor_time`, `img_path` FROM `azure_person_identity_checkout` WHERE `checkout_status` != 0 AND `monitor_time` BETWEEN %s AND %s ORDER BY `monitor_time`"
-        cursor.execute(sql, (start_time, end_time))
-        datas = cursor.fetchall()
+    ### Obtain data from SQL database ###
+    #
+    #with connection.cursor() as cursor:
+    #    sql = "SELECT `id`, `person_first_id`, `person_first_similarity`, `person_second_id`, \
+    #           `person_second_similarity`, `face_rectangle`, `right_person_id`, `monitor_time`, \
+    #           `img_path` FROM `azure_person_identity_checkout` WHERE `checkout_status` != 0 AND `monitor_time` \
+    #           BETWEEN %s AND %s ORDER BY `monitor_time`"
+    #    cursor.execute(sql, (start_time, end_time))
+    #    datas = cursor.fetchall()
 
-        for data in datas:
-            data['final_id'] = data['right_person_id']
+    ### Data pre-processing ###
+    # This is used to counter a name difference
+    #
+    #for data in datas:
+    #    data['final_id'] = data['right_person_id']
 
-        return datas
+    ### Use to save data to JSON ###
+    #
+    #with open('data/azure_face_recognition_result_data.json', 'w') as f:
+    #    for obj in datas:
+    #        json.dump(obj, f, default=json_serial)
+    #        f.write('\n')
+
+    ### Load demo data from local JSON file ###
+    datas = []
+    datas.clear()
+    with open('data/azure_face_recognition_result_data.json') as f:
+        for line in f:
+            datas.append(json.loads(line))
+
+    for data in datas:
+        print (data)
+
+    return datas
 
 
 def get_face_count(group_similarity_src):
