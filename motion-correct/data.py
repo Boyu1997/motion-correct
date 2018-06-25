@@ -3,6 +3,7 @@ import csv
 import json
 
 from datetime import date, datetime
+import dateutil.parser
 
 # JSON serializer for objects not serializable by default json code
 def json_serial(obj):
@@ -43,14 +44,16 @@ def get_data(start_time, end_time):
     #        f.write('\n')
 
     ### Load demo data from local JSON file ###
+
     datas = []
-    datas.clear()
+    start_time = dateutil.parser.parse(start_time)
+    end_time = dateutil.parser.parse(end_time)
+
     with open('data/azure_face_recognition_result_data.json') as f:
         for line in f:
-            datas.append(json.loads(line))
-
-    for data in datas:
-        print (data)
+            this_data = json.loads(line)
+            if start_time < dateutil.parser.parse(this_data['monitor_time']) < end_time:
+                datas.append(this_data)
 
     return datas
 
