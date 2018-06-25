@@ -11,7 +11,7 @@ setuptools.setup(
     description="Use motion information to correct face recognition result.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/boyu1997",
+    url="https://github.com/Boyu1997/motion-correct",
     packages=setuptools.find_packages(),
     classifiers=(
         "Programming Language :: Python :: 3",
