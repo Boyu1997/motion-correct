@@ -51,7 +51,7 @@ def find_match(c, face_count):
 
         # find all exact match
         # self precision rate = 0.9765 (6340/6492)
-        # depend on seeting
+        # depend on setting
         for face_id, face_autos in c.autos.items():
             if len(face_autos) is 1:
                 face_auto = face_autos[0]
