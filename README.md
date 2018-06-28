@@ -3,9 +3,21 @@
 ## Motivation
 Face recognition APIs like Microsoft Azure are developed for the general purpose. This application is intended to improve recognition accuracy for a classroom setting (where we have a given group of people that generally stay in the same position throughout the class). In this kind of situation, because of the consistency of position, it is possible to obtain a better recognition accuracy. This application is developed to extract the position information from API returned face recognition result and use the consistency of position assumption to improve accuracy.
 
+
 ## Installation
 
 ## Test Case
+
+### Instruction
+
+### Result
+| Data Set | Data Count | Original Accuracy | Improved Accuracy |
+| --- | --- | --- | --- |
+| Training Set 2018-01-03&18 | 0.7732 | 0.8771 |
+| Test Set 2018-01-09 | 1693 | 0.7732 | 0.8771 |
+| Test Set 2018-01-09 | 345 | 0.4783 | 0.5913 |
+| Test Set 2018-01-09 | 525 | 0.6267 | 0.6933 |
+| Test Set 2018-01-09 | 792 | 0.7980 | 0.8573 |
 
 ## Directory Tree
 ```bash
@@ -40,12 +52,13 @@ Face recognition APIs like Microsoft Azure are developed for the general purpose
 
 ### Trusted Area
 
+
 ### Frame Filling
 
 
 ## Design Flow
 
-### Caption
+### Overview
 The algorithm takes input Microsoft Azure face recognition data in `data.py`. Then process the data and build trusted area model using the build function in `build.py`. The function finds face recognition results that do not move (same face found at close by location in a range of time) with the help from `Automaton` and `Collection` class. Next, in `match.py`, the algorithm matches the face recognition results back to all the trusted area model that is confirmed to be valid. The match function will trust all the face recognition results that can be matched into a valid model, and generate a snapshot of which models and faces are matched in each frame. The data are processed in `convert.py` before sending to convolutional neural network in `network.py` to decide which possible face is the closest match to an unconfirmed recognition result, and `predict.py` translate the network outputs into final results.
 
 ### Trusted Area Model
