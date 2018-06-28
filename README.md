@@ -1,6 +1,11 @@
 # motion-correct
 
+## Motivation
+Face recognition APIs like Microsoft Azure are developed for the general purpose. This application is intended to improve recognition accuracy for a classroom setting (where we have a given group of people that generally stay in the same position throughout the class). In this kind of situation, because of the consistency of position, it is possible to obtain a better recognition accuracy. This application is developed to extract the position information from API returned face recognition result and use the consistency of position assumption to improve accuracy.
+
 ## Installation
+
+## Test Case
 
 ## Directory Tree
 ```bash
