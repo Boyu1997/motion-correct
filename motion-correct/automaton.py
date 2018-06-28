@@ -54,6 +54,9 @@ class Auto:
                 num_of_nan += 1
         #print (self.top)
         #print ("check validity: auto for face", self.face_id, "nan rate:", 1-num_of_nan/len(self.top))
+
+        '''delay rate check'''
+        
         if 1-num_of_nan/len(self.top) < nan_max_rate:
             #print ("NaN rate too high, invalid")
             self.top.pop(-1)

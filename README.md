@@ -13,11 +13,12 @@ Face recognition APIs like Microsoft Azure are developed for the general purpose
 ### Result
 | Data Set | Data Count | Original Accuracy | Improved Accuracy |
 | --- | --- | --- | --- |
-| Training Set 2018-01-03&18 | 0.7732 | 0.8771 |
+| Training Set 2018-01-03&18 | 1693 | 0.7732 | 0.8771 |
 | Test Set 2018-01-09 | 1693 | 0.7732 | 0.8771 |
 | Test Set 2018-01-09 | 345 | 0.4783 | 0.5913 |
 | Test Set 2018-01-09 | 525 | 0.6267 | 0.6933 |
 | Test Set 2018-01-09 | 792 | 0.7980 | 0.8573 |
+In this test set example 
 
 ## Directory Tree
 ```bash

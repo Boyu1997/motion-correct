@@ -1,7 +1,7 @@
 from automaton import Auto
 from collection import Collection, collection_builder
 
-def build_automaton(datas):
+def build_model(datas):
 
     # data pre-processing
     last_time = datas[0]['monitor_time']
